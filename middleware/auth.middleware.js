@@ -22,3 +22,19 @@ module.exports.checkUser = (req, res, next) => {
         next();
     }
 }
+
+module.exports.requireAuth = (req, res, next) => {
+    const token = req.cookies.jwt;
+    if (token) {
+        jwt.verify(token, process.env.TOKEN_SECRET_KEY, async (error, decodedToken) => {
+            if (error) {
+                console.log('requireAuth', error);
+            } else {
+                console.log(decodedToken.id);
+                next();
+            }
+        });
+    } else {
+        console.log('No Token found');
+    }
+}

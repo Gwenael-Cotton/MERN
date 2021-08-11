@@ -7,8 +7,8 @@ const userSchema = mongoose.Schema(
         pseudo: {
             type: String,
             required: true,
-            minLength: 3,
-            maxLength: 55,
+            minlength: 3,
+            maxlength: 55,
             unique: true,
             trim: true,
         },
@@ -17,13 +17,14 @@ const userSchema = mongoose.Schema(
             required: true,
             validate: [isEmail],
             lowercase: true,
+            unique: true,
             trim: true,
         },
         password: {
             type: String,
             required: true,
-            minLength: 6,
-            maxLength: 1024,
+            minlength: 6,
+            maxlength: 1024,
         },
         piscture: {
             type: String,
