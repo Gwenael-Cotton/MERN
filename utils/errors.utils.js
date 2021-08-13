@@ -28,3 +28,15 @@ module.exports.signInErrors = (error) => {
     
     return errors;
 }
+
+module.exports.uploadErrors = (error) => {
+    let errors = { format: '', maxSize: ''};
+
+    if (error.message.includes('invalid file'))
+        errors.format = "Format incompatible";
+    
+    if (error.message.includes('Max size'));
+        errors.size = "La taille du fichier est superieure à 500ko";
+    
+    return errors;
+}
