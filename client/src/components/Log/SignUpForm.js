@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import SignInForm from './SignInForm';
 
 const SignUpForm = () => {
+  const [formSubmit, setFormSubmit] = useState(false);
   const [pseudo, setPseudo] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,10 +28,10 @@ const SignUpForm = () => {
         }
       }).then((res) => {
         console.log(res);
-        if (password !== controlePassword) {
-          infosError.innerHTML = 'Les mots de passe doivent être idendiques';
+        if (res.data.errors) {
+          infosError.innerHTML = res.data.errors.message;
         } else {
-          window.location = '/profil';
+          setFormSubmit(true);
         }
       }).catch((err) => {
         console.log(err);
@@ -39,6 +41,12 @@ const SignUpForm = () => {
 
 
   return (
+    <>
+      {formSubmit ? (
+        <>
+          <SignInForm />
+        </>
+      ) : (
     <form onSubmit={handleRegister} id='sign-up-form'>
       <label htmlFor="pseudo">Pseudo</label>
       <input
@@ -75,6 +83,8 @@ const SignUpForm = () => {
       <div className="error-control"></div>
       <input type="submit" />
     </form>
+    )}
+    </>
   );
 };
 
