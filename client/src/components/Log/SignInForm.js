@@ -10,8 +10,8 @@ const handleLogin = (event) => {
     event.preventDefault();
     const infosError = document.querySelector('.error');
 
-    console.log(email);
-    console.log(password);
+    // console.log(email);
+    // console.log(password);
 
     axios({
         method: 'POST',

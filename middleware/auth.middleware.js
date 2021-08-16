@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 // verification constante de l'user connecté
 module.exports.checkUser = (req, res, next) => {
     const token = req.cookies.jwt;
-    console.log(token);
+    // console.log(token);
     if (token) {
         jwt.verify(token, process.env.TOKEN_SECRET_KEY, async (error, decodedToken) => {
             if(error) {
@@ -30,7 +30,7 @@ module.exports.requireAuth = (req, res, next) => {
             if (error) {
                 console.log('requireAuth', error);
             } else {
-                console.log(decodedToken.id);
+                // console.log(decodedToken.id);
                 next();
             }
         });
