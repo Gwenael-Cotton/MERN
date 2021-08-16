@@ -22,7 +22,7 @@ const handleLogin = (event) => {
             password: password,
         },
     }).then((res) => {
-        console.log(res.data.errors);
+        console.log(res.data);
         if (res.data.errors) {
             infosError.innerHTML = res.data.errors.message;
         } else {

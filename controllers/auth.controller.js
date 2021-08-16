@@ -31,7 +31,7 @@ module.exports.signIn = async (req, res) => {
         res.status(200).json({ user: user._id });
     } catch (error) {
         const errors = signInErrors(error);
-        res.status(400).send({errors});
+        res.status(200).send({errors});
     }
 }
 
